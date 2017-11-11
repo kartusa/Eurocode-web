@@ -1,0 +1,154 @@
+<!DOCTYPE html>
+<html lang="pl" manifest="manifest.appcache">
+
+<head>
+	<title>Eurocode</title>
+	<meta charset="utf-8">
+	<link rel="stylesheet" href="css/reset.css" type="text/css">
+	<link rel="stylesheet" href="css/1a.css" type="text/css">
+</head>
+
+<body>
+<div class="header">
+	<p>Obliczanie gęstości obciążenia ogniowego</p>
+	<p>metodą <em>Eurokodu</em></p>
+</div>
+<div class="main">
+	<div class="dane">
+		<div class="textDane">
+			<form id="dane1">
+				<fieldset>
+					<legend>Dane podstawowe:</legend>
+					<p><label for="surface">Wielkość powierzchni strefy pożarowej [m<sup>2</sup>]</label>
+						<input type="number" id="surface" required autofocus></p>
+					<p><label for="surfaceTotal">Powierzchnia całkowita [m<sup>2</sup>]</label>
+						<input type="number" id="surfaceTotal"></p>
+					<p><label for="surfaceVertical">Powierzchnia pionowych otworów w ścianach wewnętrznych [m<sup>2</sup>]</label>
+					<input type="number" id="surfaceVertical"></p>
+					<p><label for="surfaceHorizontal">Powierzchnia poziomych otworów w dachu [m<sup>2</sup>]</label>
+					<input type="number" id="surfaceHorizontal"></p>
+					<p><label for="areaHight">Wysokość strefy pożarowej [m]</label>
+						<input type="number" id="areaHight"></p>
+					<p><label for="windowHeight">Średnia ważona wysokości okien [m]</label>
+					<input type="number" id="windowHeight"></p>
+				</fieldset>
+				<fieldset id="materials">
+					<legend>Materiały palne:</legend>
+					<div class="materials-button">
+						<button type="button">dodaj</button>
+					</div>
+					<div class="materials-list">
+						<table border="0">
+							<thead>
+								<tr><td>substancja</td>
+									<td>masa</td>
+									<td>ciepło spalania [kJ/kg]</td></tr>
+							</thead>
+								<tr><td><input type="text" id="material0" required></td>
+									<td><input type="number" id="material0Mass" required></td>
+									<td><input type="number" id="material0Heat" required></td></tr>
+								<tr><td><input type="text" id="material1"></td>
+									<td><input type="number" id="material1Mass"></td>
+									<td><input type="number" id="material1Heat"></td></tr>
+								<tr><td><input type="text" id="material2"></td>
+									<td><input type="number" id="material2Mass"></td>
+									<td><input type="number" id="material2Heat"></td></tr>
+								<tr><td><input type="text" id="material3"></td>
+									<td><input type="number" id="material3Mass"></td>
+									<td><input type="number" id="material3Heat"></td></tr>
+								<tr><td><input type="text" id="material4"></td>
+									<td><input type="number" id="material4Mass"></td>
+									<td><input type="number" id="material4Heat"></td></tr>
+								<tr><td><input type="text" id="material5"></td>
+									<td><input type="number" id="material5Mass"></td>
+									<td><input type="number" id="material5Heat"></td></tr>
+								<tr><td><input type="text" id="material6"></td>
+									<td><input type="number" id="material6Mass"></td>
+									<td><input type="number" id="material6Heat"></td></tr>
+								<tr><td><input type="text" id="material7"></td>
+									<td><input type="number" id="material7Mass"></td>
+									<td><input type="number" id="material7Heat"></td></tr>
+						</table>
+					</div>
+				</fieldset>
+				<fieldset id="factors">
+					<p><label for="fireSafety">Współczynnik uwzględniający zabezpieczone obciążenie ogniowe</label>
+						<input type="number" min="0.1" max="1" step="0.1" value="1" required id="fireSafety"></p>
+					<p><label for="fireFactor">Współczynnik spalania</label>
+						<input type="number" min="0.1" max="1" step="0.1" value="0.8" required id="fireFactor"></p>
+					<p>Współczynnik uwzględniający ryzyko pojawienia się pożaru:<br>
+					<label for="fireRisk">Sposób użytkowania:</label>
+						<select name="fireRisk" id="fireRisk">
+							<option value="fireRisk0">galeria sztuki</option>
+							<option value="fireRisk1">muzeum</option>
+							<option value="fireRisk2">basen</option>
+							<option value="fireRisk3">biuro</option>
+							<option value="fireRisk4">mieszkanie</option>
+							<option value="fireRisk5">hotel</option>
+							<option value="fireRisk6">przemysł papierniczy</option>
+							<option value="fireRisk7">wytwórnia maszyn i silników</option>
+							<option value="fireRisk8">laboratorium chemiczne</option>
+							<option value="fireRisk9">warsztat malarski</option>
+							<option value="fireRisk10">wytwórnia fajerwerków</option>
+							<option value="fireRisk11">wytwórnia farb</option>
+						</select></p>
+				</fieldset>
+				<fieldset id="fireProof">
+					<legend>Współczynniki charakteryzujące czynne środki ochrony przeciwpożarowej:</legend>
+					<p><label for="checkbox0">Samoczynne urządzenia gaśnicze wodne</label>
+						<input type="checkbox" id="checkbox0"></p>
+					<p><label for="checkbox1">Samoczynna detekcja ciepła</label>
+						<input type="checkbox" id="checkbox1"></p>
+					<p><label for="checkbox2">Samoczynna detekcja dymu</label>
+						<input type="checkbox" id="checkbox2"></p>
+					<p><label for="checkbox3">Samoczynna transmisja alarmu do straży pożarnej</label>
+						<input type="checkbox" id="checkbox3"></p>
+					<p><label for="checkbox4">Zakładowa straż pożarna</label>
+						<input type="checkbox" id="checkbox4"></p>
+					<p><label for="checkbox5">Publiczna straż pożarna</label>
+						<input type="checkbox" id="checkbox5"></p>
+					<p><label for="checkbox6">Bezpieczne pożarowe drogi dostępu</label>
+						<input type="checkbox" id="checkbox6"></p>
+					<p><label for="checkbox7">Urządzenia przeciwpożarowe</label>
+						<input type="checkbox" id="checkbox7"></p>
+					<p><label for="checkbox8">Systemy oddymiania</label>
+						<input type="checkbox" id="checkbox8"></p>
+					<label for="fireRisk">Sposób użytkowania:</label>
+					<label>Niezależne zaopatrzenie wodne:</label>
+					<select name="water" id="water">
+						<option value="water0">0</option>
+						<option value="1">1</option>
+						<option value="2">2</option></select>
+				</fieldset>
+				<label>Materiał konstrukcyjny:</label>
+				<select name="construction" id="construction">
+					<option value="construction0">żelbet</option>
+					<option value="construction1">stal zabezpieczona</option>
+					<option value="construction2">stal niezabezpieczona</option></select>
+			</form>
+		</div>
+	</div>
+	<div class="wyniki">
+		<div class="textWyniki">
+			<div class="buttons">
+				<button type="button" id="count" onclick="licz();">
+					LICZ
+				</button>
+				<button type="button" id="resetData" onclick="resetData();">
+					RESET
+				</button>
+				<button type="button" id="printResult" onclick="printResult();">
+					DRUKUJ
+				</button>
+
+			</div>
+		</div>
+	</div>
+</div>
+<div class="footer">
+	<p>Autor: <strong><a href="mailto:skowron.grzegorz@gmail.com" class="email">Grzegorz Skowron</a></strong></p>
+	<p><time datetime="2017">marzec 2017</time></p>
+</div>
+</body>
+
+</html>
